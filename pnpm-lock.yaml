@@ -3,6 +3,7 @@ lockfileVersion: 5.4
 specifiers:
   '@fontsource/fira-mono': ^4.5.0
   '@neoconfetti/svelte': ^1.0.0
+  '@snlab/florence': ^0.4.0
   '@sveltejs/adapter-auto': next
   '@sveltejs/kit': next
   '@types/cookie': ^0.5.1
@@ -23,6 +24,7 @@ specifiers:
   vite: ^3.1.0
 
 dependencies:
+  '@snlab/florence': 0.4.0
   d3: 7.6.1
   d3-dsv: 3.0.1
 
@@ -177,6 +179,22 @@ packages:
   /@polka/url/1.0.0-next.21:
     resolution: {integrity: sha512-a5Sab1C4/icpTZVzZc5Ghpz88yQtGOyNqYXcZgOssB2uuAr+wF/MvN6bgtW32q7HHrvBki+BsZ0OuNv6EV3K9g==}
     dev: true
+
+  /@snlab/florence/0.4.0:
+    resolution: {integrity: sha512-O91ZkoIJ31X/1X7WZ6J0D/6Rc3kk0ppe9jIyB8e13UC9EFTfabGhvSduY/1tPMoyPuH4jGlgYm167PyPVSUfUQ==}
+    dependencies:
+      '@snlab/rendervous': 0.3.4
+    dev: false
+
+  /@snlab/rendervous/0.3.4:
+    resolution: {integrity: sha512-ipptKMQkZp3YZs1S69TqCucWlPagsR07lHXriolxTgQ1cUCKpZdvLs6au6YwGcyhDskd5HJbCO/1j4wubf8yxA==}
+    dependencies:
+      colortranslator: 1.9.3
+      d3-path: 3.0.1
+      d3-scale: 4.0.2
+      d3-shape: 3.1.0
+      rbush: 3.0.1
+    dev: false
 
   /@sveltejs/adapter-auto/1.0.0-next.86:
     resolution: {integrity: sha512-IKW1SUiXPPZ+qumQu5v48VH4aGmYiSLS83qbDlwfNmoRQejgU54f1M5s+isVmnr9kIOwbMQ0CfYhmZWJ7sEv6Q==}
@@ -526,6 +544,10 @@ packages:
     resolution: {integrity: sha512-qiBjkpbMLO/HL68y+lh4q0/O1MZFj2RX6X/KmMa3+gJD3z+WwI1ZzDHysvqHGS3mP6mznPckpXmw1nI9cJjyRg==}
     hasBin: true
     dev: true
+
+  /colortranslator/1.9.3:
+    resolution: {integrity: sha512-51O07JAa8J0uIZT08FOGirqRBK9DVG0luuTNjYk9FdawE4tFc3yp7jQhRkZQsUDRwCnKa4CwMRuJIiaSeXsGvg==}
+    dev: false
 
   /commander/7.2.0:
     resolution: {integrity: sha512-QrWXB+ZQSVPmIWIhtEO9H+gwHaMGYiF5ChvoJ+K9ZGHG/sVsa6yiesAD1GC/x46sET00Xlwo1u49RVVVzvcSkw==}
@@ -1913,6 +1935,16 @@ packages:
     resolution: {integrity: sha512-WuyALRjWPDGtt/wzJiadO5AXY+8hZ80hVpe6MyivgraREW751X3SbhRvG3eLKOYN+8VEvqLcf3wdnt44Z4S4SA==}
     engines: {node: '>=10'}
     dev: true
+
+  /quickselect/2.0.0:
+    resolution: {integrity: sha512-RKJ22hX8mHe3Y6wH/N3wCM6BWtjaxIyyUIkpHOvfFnxdI4yD4tBXEBKSbriGujF6jnSVkJrffuo6vxACiSSxIw==}
+    dev: false
+
+  /rbush/3.0.1:
+    resolution: {integrity: sha512-XRaVO0YecOpEuIvbhbpTrZgoiI6xBlz6hnlr6EHhd+0x9ase6EmeN+hdwwUaJvLcsFFQ8iWVF1GAK1yB0BWi0w==}
+    dependencies:
+      quickselect: 2.0.0
+    dev: false
 
   /read-cache/1.0.0:
     resolution: {integrity: sha512-Owdv/Ft7IjOgm/i0xvNDZ1LrRANRfew4b2prF3OWMQLxLfu3bS8FVhCsrSCMK4lR56Y9ya+AThoTpDCTxCmpRA==}

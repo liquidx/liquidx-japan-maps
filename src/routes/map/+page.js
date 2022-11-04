@@ -1,4 +1,3 @@
-import { csv } from 'd3';
 import { csvParse } from 'd3-dsv';
 
 const tokyoNonLandAreas = [
