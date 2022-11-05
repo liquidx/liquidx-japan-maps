@@ -16,12 +16,18 @@
 	let scale = 1;
 
 	onMount(() => {
-		stations = $page.data.stations;
-		areas = $page.data.areas;
-		outline = $page.data.outline;
-		areasByWard = $page.data.areasByWard;
-
-		console.log($page.data);
+		if ($page.data.stations) {
+			stations = $page.data.stations;
+		}
+		if ($page.data.areas) {
+			areas = $page.data.areas;
+		}
+		if ($page.data.outline) {
+			outline = $page.data.outline;
+		}
+		if ($page.data.areasByWard) {
+			areasByWard = $page.data.areasByWard;
+		}
 	});
 </script>
 
@@ -33,9 +39,11 @@
 <div class="p-4">
 	<div>Areas: {areas.features.length}</div>
 	<div class="relative">
-		<Map001 {stations} {areas} {outline} {areasByWard} {width} {height} />
-		<div class="absolute bottom-0 left-0 opacity-50">
-			<div class="font-bold text-7xl text-gray-300 p-16">Stations of Tokyo</div>
-		</div>
+		{#if $page.params.slug == 'points'}
+			<Map001 {stations} {areas} {outline} {areasByWard} {width} {height} />
+			<div class="absolute bottom-0 left-0 opacity-50">
+				<div class="font-bold text-7xl text-gray-300 p-16">Stations of Tokyo</div>
+			</div>
+		{:else if $page.params.slug == 'lines'}{/if}
 	</div>
 </div>

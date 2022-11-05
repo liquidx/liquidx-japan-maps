@@ -158,7 +158,7 @@
 </script>
 
 <div
-	class="p-4 w-[1600px] bg-[radial-gradient(ellipse_at_bottom_left,_var(--tw-gradient-stops))] from-purple-800 via-violet-900 to-purple-900"
+	class="p-4 bg-[radial-gradient(ellipse_at_bottom_left,_var(--tw-gradient-stops))] from-purple-800 via-violet-900 to-purple-900"
 >
 	<div class="map" bind:this={mapContainer} />
 </div>
