@@ -4,6 +4,7 @@
 	import { onMount } from 'svelte';
 	import Map001 from './Map001.svelte';
 	import Map002 from './Map002.svelte';
+	import Map003 from './Map003.svelte';
 	import { page } from '$app/stores';
 
 	let stations = [];
@@ -56,6 +57,11 @@
 			<Map002 {trainLines} {japanBoundingBox} {width} {height} />
 			<div class="absolute bottom-0 left-0 opacity-50">
 				<div class="font-light text-5xl text-gray-300 p-16">Lines of Japan</div>
+			</div>
+		{:else if $page.params.slug == 'polygons'}
+			<Map003 {areas} {outline} {width} {height} />
+			<div class="absolute bottom-0 left-0 opacity-50">
+				<div class="font-bold text-xl text-gray-300 p-16">Polygons of Tokyo</div>
 			</div>
 		{/if}
 	</div>

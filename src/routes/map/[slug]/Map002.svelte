@@ -4,7 +4,6 @@
 	import { onDestroy } from 'svelte';
 	import * as d3 from 'd3';
 	import * as turf from '@turf/turf';
-	import { flatten } from 'lodash-es';
 
 	export let trainLines = {};
 	export let japanBoundingBox = {};

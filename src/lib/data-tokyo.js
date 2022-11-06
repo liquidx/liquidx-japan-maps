@@ -1,5 +1,6 @@
 // @ts-nocheck
 import { csvParse } from 'd3-dsv';
+import * as turf from '@turf/turf';
 
 const tokyoNonLandAreas = [
   "羽田沖水面及び中央防波堤外側付近", // Oita
@@ -46,7 +47,7 @@ export const filterNonMainlandAreas = (tokyoAreas) => {
     .filter((f) => !tokyoNonLandAreas.includes(f.properties.S_NAME));
   return {
     type: "FeatureCollection",
-    features: features
+    features: features.map(f => turf.rewind(f, { reverse: true }))
   };
 }
 

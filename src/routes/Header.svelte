@@ -9,5 +9,6 @@
 	<ul>
 		<li><a href="/map/points/" class="underline">Points</a></li>
 		<li><a href="/map/lines/" class="underline">Lines</a></li>
+		<li><a href="/map/polygons/" class="underline">Polygons</a></li>
 	</ul>
 </header>

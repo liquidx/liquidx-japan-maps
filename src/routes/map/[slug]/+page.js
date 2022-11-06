@@ -21,9 +21,12 @@ export async function load({ fetch, params }) {
       for (let name of trainLineNames) {
         trainLines[name] = await fetch(`/data/train-lines/${name}.geojson`).then((res) => res.json())
       }
-
-
       return { japanBoundingBox, trainLines }
+    }
+    case 'polygons': {
+      const outline = await fetch('/tokyo-mainland.geojson').then((res) => res.json())
+      const areas = await fetch('/tokyo-areas.geojson').then(res => parseTokyoAreas(res))
+      return { outline, areas }
     }
   }
 

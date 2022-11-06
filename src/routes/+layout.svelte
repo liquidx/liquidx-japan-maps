@@ -8,7 +8,7 @@
 		<Header />
 	</div>
 
-	<main class="cols-span-6 lg:col-span-7">
+	<main class="col-span-6 lg:col-span-7">
 		<slot />
 	</main>
 </div>
