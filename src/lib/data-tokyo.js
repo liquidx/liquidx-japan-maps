@@ -1,3 +1,4 @@
+// @ts-nocheck
 import { csvParse } from 'd3-dsv';
 
 const tokyoNonLandAreas = [
@@ -29,11 +30,8 @@ export const groupAreasByWard = (tokyoOutline, tokyoAreas) => {
     groups[name] = {
       type: "FeatureCollection",
       features: tokyoAreas.features
-
         .filter((f) => f.properties.CITY_NAME == name)
-
         .filter((f) => f.properties.S_NAME.trim().length > 0)
-
         .filter((f) => !tokyoNonLandAreas.includes(f.properties.S_NAME))
     };
   }
@@ -43,11 +41,8 @@ export const groupAreasByWard = (tokyoOutline, tokyoAreas) => {
 
 export const filterNonMainlandAreas = (tokyoAreas) => {
   let features = tokyoAreas.features
-
     .filter((f) => !tokyoIslands.includes(f.properties.CITY_NAME))
-
     .filter((f) => f.properties.S_NAME.trim().length > 0)
-
     .filter((f) => !tokyoNonLandAreas.includes(f.properties.S_NAME));
   return {
     type: "FeatureCollection",
@@ -57,10 +52,9 @@ export const filterNonMainlandAreas = (tokyoAreas) => {
 
 
 export const parseTokyoStations = async (response) => {
-  return response.text(
+  return response.text()
     .then(res => csvParse(res))
     .then(res => res.filter((d) => d.Lat && d.Lng && d["Inside Tokyo"] != "0"))
-
 }
 
 
