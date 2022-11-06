@@ -29,7 +29,7 @@ export async function load({ fetch, params }) {
       return { outline, areas }
     }
     case 'green': {
-      const greenAreas = await fetch('/japan-green.geojson').then((res) => res.json())
+      const greenAreas = await fetch('/tokyo-green.geojson').then((res) => res.json())
       const outline = await fetch('/tokyo-mainland.geojson').then((res) => res.json())
       return { outline, areas: greenAreas }
 
