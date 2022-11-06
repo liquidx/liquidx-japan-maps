@@ -43,7 +43,7 @@ const main = () => {
     .action(async (gmlPath, options) => {
       const gml = fs.readFileSync(gmlPath)
       const geojson = await gmlToGeojson(gml)
-      fs.writeFileSync(options.output, JSON.stringify(geojson, null, 2));
+      fs.writeFileSync(options.output, JSON.stringify(geojson));
     })
 
   program.command('filter-train-lines <segmentsPath> <wardsPath>')
