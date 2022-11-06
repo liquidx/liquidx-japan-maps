@@ -28,6 +28,12 @@ export async function load({ fetch, params }) {
       const areas = await fetch('/tokyo-areas.geojson').then(res => parseTokyoAreas(res))
       return { outline, areas }
     }
+    case 'green': {
+      const greenAreas = await fetch('/japan-green.geojson').then((res) => res.json())
+      const outline = await fetch('/tokyo-mainland.geojson').then((res) => res.json())
+      return { outline, areas: greenAreas }
+
+    }
   }
 
   throw error(404, 'Not found');

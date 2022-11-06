@@ -5,6 +5,7 @@
 	import Map001 from './Map001.svelte';
 	import Map002 from './Map002.svelte';
 	import Map003 from './Map003.svelte';
+	import Map004 from './Map004.svelte';
 	import { page } from '$app/stores';
 
 	let stations = [];
@@ -15,9 +16,6 @@
 	let trainLines = {};
 	let width = 1600;
 	let height = 1200;
-
-	let colorSchemeName = 'interpolateRainbow';
-	let scale = 1;
 
 	onMount(() => {
 		if ($page.data.stations) {
@@ -62,6 +60,11 @@
 			<Map003 {areas} {outline} {width} {height} />
 			<div class="absolute bottom-0 left-0 opacity-50">
 				<div class="font-bold text-xl text-gray-300 p-16">Polygons of Tokyo</div>
+			</div>
+		{:else if $page.params.slug == 'green'}
+			<Map004 {areas} {outline} {width} {height} />
+			<div class="absolute bottom-0 left-0 opacity-50">
+				<div class="font-bold text-xl text-gray-300 p-16">Green of Tokyo</div>
 			</div>
 		{/if}
 	</div>
