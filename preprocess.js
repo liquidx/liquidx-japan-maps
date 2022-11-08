@@ -4,16 +4,13 @@ import { filterTrainLines } from './src/lib/data-national-land.js'
 import xml2js from 'xml2js'
 import * as turf from '@turf/turf'
 
-const gmlToGeojson = async (gml) => {
+const gmlLineStringsToGeojson = async (gml) => {
   const xmlParser = new xml2js.Parser()
   const root = await xmlParser.parseStringPromise(gml)
 
   const polygons = []
   root['ksj:Dataset']['gml:Curve'].forEach(curve => {
     curve['gml:segments'][0]['gml:LineStringSegment'].forEach(segment => {
-      // const points = segment['gml:posList'][0]
-      //   .split('\n')
-      //   .map(pos => pos.split(' ').map(p => parseFloat(p)))
       const points = segment['gml:posList'][0]
         .split('\r\n')
         .filter(p => p.trim() !== '')
@@ -24,14 +21,27 @@ const gmlToGeojson = async (gml) => {
       polygons.push(polygon)
     })
   })
-  // let child = root.childNodes()
-  // console.log(child[0]);
-  // .text().split('\n').map((coord) => {
-  //   const [x, y] = coord.split(' ')
-  //   return [parseFloat(x), parseFloat(y)]
-  // })
+
 
   return turf.featureCollection(polygons)
+}
+
+const gmlPointsToGeojson = async (gml) => {
+  const xmlParser = new xml2js.Parser()
+  const root = await xmlParser.parseStringPromise(gml)
+
+  const points = []
+  root['ksj:Dataset']['gml:Point'].forEach(point => {
+    const pos = point['gml:pos']
+      .map(p => p.trim().split(' ').map(parseFloat))
+      .map(p => [p[1], p[0]])
+
+    console.log(pos[0])
+    const p = turf.point(pos[0])
+    points.push(p)
+  })
+
+  return turf.featureCollection(points)
 }
 
 
@@ -40,9 +50,15 @@ const main = () => {
 
   program.command('convert-gml <gml>')
     .requiredOption('--output <outputPath>', 'output path')
+    .option('--extract <type>', 'extract type (linestring, point)', 'linestring')
     .action(async (gmlPath, options) => {
       const gml = fs.readFileSync(gmlPath)
-      const geojson = await gmlToGeojson(gml)
+      let geojson = null
+      if (options.extract == 'linestring') {
+        geojson = await gmlLineStringsToGeojson(gml)
+      } else {
+        geojson = await gmlPointsToGeojson(gml)
+      }
       fs.writeFileSync(options.output, JSON.stringify(geojson));
     })
 

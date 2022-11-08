@@ -31,8 +31,12 @@ export async function load({ fetch, params }) {
     case 'green': {
       const greenAreas = await fetch('/data/tokyo-green.geojson').then((res) => res.json())
       const moreGreenArea = await fetch('/data/A45-19_13.geojson').then((res) => res.json())
+      // merge areas
+      //const japanGreenAreas = await fetch('/data/japan-green.geojson').then((res) => res.json())
+      greenAreas.features = greenAreas.features.concat(moreGreenArea.features)
       const outline = await fetch('/data/tokyo-mainland.geojson').then((res) => res.json())
-      return { outline, areas: moreGreenArea }
+      const points = await fetch('/data/tokyo-parks.geojson').then((res) => res.json())
+      return { outline, areas: greenAreas, points }
 
     }
   }

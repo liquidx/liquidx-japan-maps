@@ -10,6 +10,7 @@
 
 	let stations = [];
 	let areas = { features: [] };
+	let points = { features: [] };
 	let outline = { features: [] };
 	let areasByWard = { wards: [] };
 	let japanBoundingBox = {};
@@ -24,6 +25,10 @@
 		if ($page.data.areas) {
 			areas = $page.data.areas;
 		}
+		if ($page.data.points) {
+			points = $page.data.points;
+		}
+
 		if ($page.data.outline) {
 			outline = $page.data.outline;
 		}
@@ -62,7 +67,7 @@
 				<div class="font-bold text-xl text-gray-300 p-16">Polygons of Tokyo</div>
 			</div>
 		{:else if $page.params.slug == 'green'}
-			<Map004 {areas} {outline} {width} {height} />
+			<Map004 {areas} {outline} {points} {width} {height} />
 			<div class="absolute bottom-0 left-0 opacity-50">
 				<div class="font-bold text-xl text-gray-300 p-16">Green of Tokyo</div>
 			</div>

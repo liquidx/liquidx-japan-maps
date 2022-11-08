@@ -7,6 +7,7 @@
 
 	export let areas = { features: [] };
 	export let outline = { features: [] };
+	export let points = { features: [] };
 	export let width = 800;
 	export let height = 600;
 
@@ -14,7 +15,7 @@
 	let colorSchemeName = 'interpolateWarm';
 	let mapContainer = null;
 
-	$: redrawMap(mapContainer, outline, areas);
+	$: redrawMap(mapContainer, outline, areas, points);
 
 	onDestroy(() => {
 		if (mapContainer && mapContainer.children) {
@@ -32,7 +33,7 @@
 			.attr('d', path(feature));
 	}
 
-	function redrawMap(parent, outline, areas) {
+	function redrawMap(parent, outline, areas, points) {
 		// TODO: I have no idea why this is being executed on node?
 		try {
 			if (!document) {
@@ -54,9 +55,8 @@
 			return;
 		}
 
-		console.log(outline);
-
-		console.log(areas.features);
+		console.log('areas', areas.features);
+		console.log(points);
 
 		const projection = d3.geoMercator().fitSize([width, height], outline);
 		const path = d3.geoPath(projection);
@@ -85,6 +85,18 @@
 					areaStrokeColor,
 					areaFillColor
 				);
+			}
+		}
+
+		if (points.features) {
+			const areaFillColor = d3.color('darkgreen').hex();
+			for (let point of points.features) {
+				mapLayer
+					.append('circle')
+					.attr('cx', projection(point.geometry.coordinates)[0])
+					.attr('cy', projection(point.geometry.coordinates)[1])
+					.attr('r', 2)
+					.attr('fill', areaFillColor);
 			}
 		}
 
